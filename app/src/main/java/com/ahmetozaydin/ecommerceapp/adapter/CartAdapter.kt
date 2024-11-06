@@ -27,7 +27,8 @@ import kotlinx.coroutines.launch
 class CartAdapter(
     private val cartList: ArrayList<Cart>,
     val context: Context,
-    val database: CartDatabase
+    val database: CartDatabase,
+    private val cartList1: ArrayList<Cart>,
 ) : RecyclerView.Adapter<CartAdapter.PlaceHolder>() {
 
     interface Listener {
@@ -67,10 +68,14 @@ class CartAdapter(
         }
        holder.itemView.setOnClickListener {
            val id = cartList[position].id
+           val id1 = cartList1[position].id
            CoroutineScope(Dispatchers.IO).launch() {
                val images = ImageDatabase(context = context).imageDao().getRecord(id!!)
                val item = ProductDatabase(context).productDao().getRecord(id)
+               val item1 = ProductDatabase(context).productDao().getRecord(id)
                val product1 = Product(item.id,item.title,item.description,item.price,item.discountPercentage,item.rating,item.stock,item.brand,item.category,item.thumbnail,images)
+               val product2 = Product(item1.id,item1.title,item1.description,item1.price,item1.discountPercentage,item1.rating,item1.stock,item1.brand,item1.category,item1.thumbnail,images)
+
                Log.i(TAG, "onViewClicked: the value of product is : $product1")
                val intent = Intent(context, ProductDetailsActivity::class.java)
                intent.putExtra("product", product1)
