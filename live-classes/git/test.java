@@ -1,3 +1,3 @@
 public static void main (String arge[]){
-System.out.printl("");
+System.out.println("");
 }
