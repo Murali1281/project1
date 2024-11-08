@@ -4,8 +4,8 @@
     URL_PLAY: play.example.com
   tasks:
     - name: Print variable
-      ansible.builtin.debug:
-        msg: URL_PLAY - {{ URL_PLAY }}
+   #   ansible.builtin.debug:
+    #    msg: URL_PLAY - {{ URL_PLAY }}
     - name: Task variable
       ansible.builtin.debug:
         msg: URL_TASK - {{ URL_TASK }}
