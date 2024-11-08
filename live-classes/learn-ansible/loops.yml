@@ -3,6 +3,7 @@
   tasks:
     - name: Print Fruits
       ansible.builtin.debug:
+        when: {{ item.name }} == "apple"
         msg: "Fruit Name - {{ item }}"
       loop:
         - apple
@@ -11,7 +12,6 @@
 
     - name: Print Fruits with Quantity
       ansible.builtin.debug:
-        when: {{ item.name }} == "apple"
         msg: "Fruit Name - {{ item.name }}, Quantity - {{ item.quantity }}"
       loop:
         - { name: apple , quantity: 10 }
