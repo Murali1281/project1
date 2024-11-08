@@ -2,6 +2,8 @@
   hosts: localhost
   vars:
     URL_PLAY: play.example.com
+    URL_TASK1: tasks.example.com
+
   tasks:
     - name: Print variable
       ansible.builtin.debug:
@@ -13,12 +15,30 @@
         URL_TASK: tasks.example.com  
     # Store result of a task, to OUTPUT variable
     - name: demo
-      ansible.builtin.shell: uptime
+      ansible.builtin.shell: ansible-playbook loops.yml
       register: OUTPUT 
     - name: Print OUTPUT of previous task
       ansible.builtin.debug:
-        msg: "{{ OUTPUT.stdout }}"     
-                
+        msg: "{{ OUTPUT.stdout }}"
+
+    - name: Run expect to wait for a successful PXE boot via out-of-band CIMC
+      ansible.builtin.shell: |
+        set timeout 300
+        spawn ssh admin@{{ cimc_host }}
+
+        expect "password:"
+        send "{{ cimc_password }}\n"
+
+        expect "\n{{ cimc_name }}"
+        send "connect host\n"
+
+        expect "pxeboot.n12"
+        send "\n"
+
+        exit 0
+      args:
+        executable: /usr/bin/expect
+      delegate_to: localhost
 
 
 

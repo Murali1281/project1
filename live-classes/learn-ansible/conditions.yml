@@ -4,13 +4,16 @@
 
 - name: Demo on Conditions
   hosts: localhost
+  vars:
+    fruits: mango
+    vegetables: tomato
   tasks:
     - name: Vegetables
       ansible.builtin.debug:
-        msg: vegetables
-      when: type == "vegetables"
+        msg: fruits
+      when: fruits == "mango"
 
     - name: Fruits
       ansible.builtin.debug:
-        msg: fruits
-      when: type == "fruits"  
+        msg: vegetables
+      when: vegetables == "potato"
