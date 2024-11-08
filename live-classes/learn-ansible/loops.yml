@@ -11,6 +11,7 @@
 
     - name: Print Fruits with Quantity
       ansible.builtin.debug:
+        when: {{ item.name }} == "apple"
         msg: "Fruit Name - {{ item.name }}, Quantity - {{ item.quantity }}"
       loop:
         - { name: apple , quantity: 10 }
