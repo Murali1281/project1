@@ -15,17 +15,13 @@
         URL_TASK: tasks.example.com  
     # Store result of a task, to OUTPUT variable
     - name: demo
-      ansible.builtin.shell: uptime
+      ansible.builtin.shell: ansible-playbook loops.yml
       register: OUTPUT 
     - name: Print OUTPUT of previous task
       ansible.builtin.debug:
         msg: "{{ OUTPUT.stdout }}"
 
-        task :
-          - name: my name
-            ansible.builtin.debug:
-              msg: URL_PLAY - {{ URL_TASK1 }}
-                
+
 
 
 
