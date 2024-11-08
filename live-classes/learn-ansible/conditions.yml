@@ -6,7 +6,7 @@
   hosts: localhost
   vars:
     fruits: mango
-    vegetables: potato
+  #  vegetables: potato
   tasks:
     - name: Vegetables
       ansible.builtin.debug:
