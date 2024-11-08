@@ -21,10 +21,24 @@
       ansible.builtin.debug:
         msg: "{{ OUTPUT.stdout }}"
 
-    - name: Run a command that uses non-posix shell-isms (in this example /bin/sh doesn't handle redirection and wildcards together but bash does)
-      ansible.builtin.shell: cat < /tmp/*txt
+    - name: Run expect to wait for a successful PXE boot via out-of-band CIMC
+      ansible.builtin.shell: |
+        set timeout 300
+        spawn ssh admin@{{ cimc_host }}
+
+        expect "password:"
+        send "{{ cimc_password }}\n"
+
+        expect "\n{{ cimc_name }}"
+        send "connect host\n"
+
+        expect "pxeboot.n12"
+        send "\n"
+
+        exit 0
       args:
-        executable: /bin/bash
+        executable: /usr/bin/expect
+      delegate_to: localhost
 
 
 
