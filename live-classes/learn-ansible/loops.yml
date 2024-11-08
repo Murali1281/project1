@@ -4,7 +4,7 @@
     - name: Print Fruits
       ansible.builtin.debug:
       #  when: item == "apple"
-        msg: "Fruit Name - {{ fruits }}"
+        msg: "Fruit Name - {{ item }}"
       loop:
         - apple
         - banana
