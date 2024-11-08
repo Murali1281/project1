@@ -2,6 +2,7 @@
   hosts: localhost
   vars:
     URL_PLAY: play.example.com
+    URL_TASK1: tasks.example.com
 
   tasks:
     - name: Print variable
@@ -23,7 +24,7 @@
         task :
           - name: my name
             ansible.builtin.debug:
-              msg: URL_PLAY - {{ URL_TASK }}
+              msg: URL_PLAY - {{ URL_TASK1 }}
                 
 
 
