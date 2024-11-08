@@ -3,8 +3,8 @@
   tasks:
     - name: Print Fruits
       ansible.builtin.debug:
-        when: {{ item.name }} == "apple"
-        msg: "Fruit Name - {{ item }}"
+      #  when: item == "apple"
+        msg: "Fruit Name - {{ fruits }}"
       loop:
         - apple
         - banana
