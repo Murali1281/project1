@@ -15,7 +15,9 @@
         URL_TASK: tasks.example.com  
     # Store result of a task, to OUTPUT variable
     - name: demo
-      ansible.builtin.shell: ansible-playbook loops.yml
+      ansible.builtin.shell:
+        cmd: ls -l | grep log
+        chdir: /project1/live-classes/learn-ansible
       register: OUTPUT 
     - name: Print OUTPUT of previous task
       ansible.builtin.debug:
