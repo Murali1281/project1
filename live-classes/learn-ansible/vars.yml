@@ -21,10 +21,7 @@
     - name: Print OUTPUT of previous task
       ansible.builtin.debug:
         msg: "{{ OUTPUT.stdout }}"
-- name: Run a command that uses non-posix shell-isms (in this example /bin/sh doesn't handle redirection and wildcards together
-  ansible.builtin.shell: cat < /tmp/*txt
-  args:
-    executable: /bin/bash
+
 
 
 
