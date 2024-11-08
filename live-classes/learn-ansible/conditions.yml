@@ -4,6 +4,7 @@
 
 - name: Demo on Conditions
   hosts: localhost
+  type: vegetables
   tasks:
     - name: Vegetables
       ansible.builtin.debug:
